@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Code Breakers</title>
+</head>
+<body>
+
+	<h3>A demonstration of how to access a Text Field</h3>
+
+	<input type="text" id="myText" value="">
+
+	<p>Click the "Submit Code" button to check if you found the correct code.</p>
+
+	<button onclick="myFunction()">Submit Code</button>
+
+	<p id="demo"></p>
+
+	<script>
+		function myFunction() {
+			var instructions = "Okay well done. Now for the next step you must...\n";
+			var failure = "Incorrect code. Please try again."
+   	 		var x = document.getElementById("myText").value;
+   	 		if(x=='a1'){
+    			document.getElementById("demo").innerHTML = instructions;
+   	 		}
+   	 		else{
+   	 			document.getElementById("demo").innerHTML = failure;
+   	 		}
+		}
+	</script>
+
+</body>
+</html>
