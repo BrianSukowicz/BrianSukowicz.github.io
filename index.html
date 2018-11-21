@@ -2,31 +2,93 @@
 <html>
 <head>
 	<title>Code Breakers</title>
+	<link rel="stylesheet" type="text/css" href="assignment.css">
 </head>
 <body>
 
-	<h3>A demonstration of how to access a Text Field</h3>
+	<h3>Cool assignment</h3>
 
-	<input type="text" id="myText" value="">
+	<div id="total">
+		<p>Answers Correct: </p>
+		<p id="amount"></p>
+	</div>
+
+	<input type="text" id="textBar_1" value="">
 
 	<p>Click the "Submit Code" button to check if you found the correct code.</p>
 
-	<button onclick="myFunction()">Submit Code</button>
+	<button id="button_1" onclick="check()">Submit Code</button>
+	<button id="skip_1" style="display: none;" onclick="check()"></button>
 
-	<p id="demo"></p>
+	<p id="problem_1_text"></p>
+
+	<div id="problem_2" style="display: none;">
+		<img id="problem_2_image" src="">
+		<div class="input" id="input_2">
+			<label for="textBar_2">x = </label>
+			<input type="text" id="textBar_2" value="">
+			<button id="button_2" onclick="check()">Check Answer</button>
+			<button id="skip_2" onclick="skip()">Skip</button>
+			<p id="problem_2_text"></p>
+		</div>
+	</div>
+
+	<div id="problem_3" style="display: none;">
+		<img id="problem_3_image" src="">
+		<div class="input" id="input_3">
+			<label for="textBar_3">x = </label>
+			<input type="text" id="textBar_3" value="">
+			<button id="button_3" onclick="check()">Check Answer</button>
+			<p id="problem_3_text"></p>
+		</div>
+	</div>
+
 
 	<script>
-		function myFunction() {
-			var instructions = "Okay well done. Now for the next step you must...\n";
-			var failure = "Incorrect code. Please try again."
-   	 		var x = document.getElementById("myText").value;
-   	 		if(x=='a1'){
-    			document.getElementById("demo").innerHTML = instructions;
+		var equations = ["images/problem1.png","images/problem1.png"];
+		var answers = ['a', '5'];
+		var failure = "Incorrect. Please try again.";
+		var success = "Correct! Now solve the problem below";
+		var skipped = "Question Skipped. You can try again whenever."
+		var correct = -1;
+		function check() {
+			var index = Number((event.target.id).substring(7));
+			var textBar = "textBar_" + (index);
+			var image = "problem_" + (index+1) + "_image";
+			var textResult = "problem_" + (index) + "_text";
+			var button = "button_" + (index);
+			var skipper = "skip_" + (index);
+			var problem = "problem_" + (index+1);
+   	 		var attempted_answer = document.getElementById(textBar).value;
+   	 		if(attempted_answer==answers[index-1]){
+   	 			correct++;
+    			document.getElementById(image).src = equations[index-1];
+    			document.getElementById(textResult).innerHTML = success;
+    			document.getElementById(textResult).style.color = "green";
+    			document.getElementById(button).onclick = null;
+    			document.getElementById(skipper).onclick = null;
+    			document.getElementById(problem).style.display = "block";
+    			document.getElementById("amount").innerHTML = correct;
    	 		}
    	 		else{
-   	 			document.getElementById("demo").innerHTML = failure;
+   	 			document.getElementById(textResult).innerHTML = failure;
+   	 			document.getElementById(textResult).style.color = "red";
    	 		}
 		}
+
+		function skip() {
+			var index = Number((event.target.id).substring(5));
+			var textBar = "textBar_" + (index);
+			var image = "problem_" + (index+1) + "_image";
+			var textResult = "problem_" + (index) + "_text";
+			var problem = "problem_" + (index+1);
+			document.getElementById(image).src = equations[index-1];
+    		document.getElementById(textResult).innerHTML = skipped;
+    		document.getElementById(textResult).style.color = "#806000";
+    		document.getElementById(problem).style.display = "block";
+
+		}
+
 	</script>
 
 </body>
