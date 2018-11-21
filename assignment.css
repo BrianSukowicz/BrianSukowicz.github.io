@@ -1,0 +1,21 @@
+.input{
+	padding-top: 10px;
+}
+
+img{
+	padding-top: 30px;
+}
+
+body{
+	font-size: 16px;
+	/*margin-left: 3px;*/
+}
+
+#total{
+	float: right;
+	margin-right: 30%;
+}
+
+#amount {
+	text-align: center;
+}
